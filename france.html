@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>法國學生權益</title>
+    <style>
+        /* 網站基本樣式 */
+
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            background-color: #e6edf3;
+            color: #333;
+        }
+
+        header,
+        footer {
+            background-color: #1d8692;
+            color: white;
+            padding: 12px 20px;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            background: white;
+            padding: 24px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .topbar {
+            background-color: #176c76;
+            color: white;
+            padding: 12px 24px;
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0;
+        }
+
+        .topbar nav a {
+            color: white;
+            margin-left: 16px;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+
+
+        .section-title-wrapper {
+            margin: 20px;
+        }
+
+        .section-title {
+            font-weight: bold;
+            font-size: 28px;
+            display: inline-block;
+        }
+
+
+
+
+
+        .red-badge {
+            background-color: #8c0606;
+            color: white;
+            font-size: 16px;
+            border-radius: 12px;
+            padding: 2px 10px;
+            margin-top: 4px;
+            display: inline-block;
+        }
+
+        .blue-badge {
+            background-color: #0a3a47;
+            color: white;
+            font-size: 18px;
+            border-radius: 10px;
+            padding: 2px 10px;
+            display: inline-block;
+            margin-left: 20px;
+        }
+
+        /* 英雄區塊 */
+
+        .hero-image {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            display: block;
+            margin-top: 0;
+            background: linear-gradient(135deg, #5a7f8a 0%, #3a5f6a 100%);
+        }
+
+        .news-hero-section {
+            position: relative;
+            height: 300px;
+            max-width: 100%;
+            background-color: #ccc;
+            overflow: hidden;
+        }
+
+        .news-hero-section img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 10;
+            width: 100%;
+            height: 100%;
+            padding: 1rem;
+            color: white;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0));
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        /* 左上區塊包裝 */
+        .top-left-info {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+
+        .region-label {
+            font-size: 30px;
+            font-weight: bold;
+            text-shadow: 0 0 8px rgba(0, 0, 0, 0.7);
+            margin-bottom: 10px;
+            margin-top: 10px;
+        }
+
+        .latest-badge {
+            display: inline-block;
+            background-color: darkred;
+            color: white;
+            font-size: 14px;
+            padding: 4px 10px;
+            border-radius: 20px;
+            margin: 0px 0;
+            width: fit-content;
+        }
+
+
+
+        /*新聞內容*/
+        h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .meta {
+            color: #777;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        img {
+            display: block;
+            margin: 20px auto;
+            max-width: 100%;
+            width: 600px;
+            height: auto;
+        }
+
+        .content p {
+            line-height: 1.8;
+            margin-bottom: 16px;
+            font-size: 16px;
+        }
+
+        .caption {
+            font-size: 13px;
+            color: #666;
+            text-align: center;
+            margin-top: 6px;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+
+        .hashtags span {
+            display: inline-block;
+            background: #ddd;
+            color: #444;
+            padding: 4px 10px;
+            border-radius: 12px;
+            margin: 4px 4px 0 0;
+            font-size: 13px;
+        }
+
+        .more-articles {
+            max-width: 1000px;
+            margin: 60px auto 40px;
+            padding: 0 20px;
+        }
+
+        .more-articles h2 {
+            font-size: 20px;
+            color: #0a3a47;
+            margin-bottom: 20px;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: #d7e3ed;
+            padding: 12px;
+            width: 300px;
+            border-radius: 8px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .card img {
+            width: 100%;
+            height: 200px;
+            background: #e6f9ff;
+            border-radius: 4px;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+
+        .card h3 {
+            font-size: 15px;
+            margin: 0 0 6px;
+            line-height: 1.4;
+        }
+
+        .card .meta {
+            font-size: 12px;
+            color: #666;
+        }
+
+        a.card:hover {
+            transform: scale(1.02);
+            transition: transform 0.2s ease;
+        }
+
+        /* 頁尾 */
+        footer {
+            background-color: #e6edf3;
+            text-align: center;
+            font-size: 14px;
+            padding: 20px;
+            color: #444;
+            border-top: 1px solid #ccc;
+        }
+
+        .footer-brand {
+            font-size: 20px;
+            font-weight: bold;
+            color: #176c76;
+        }
+
+        .info-badge {
+            background-color: #1d8692;
+            color: white;
+            font-size: 14px;
+            padding: 4px 12px;
+            border-radius: 12px;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+
+
+
+        .brand {
+            font-size: 24px;
+            font-weight: bold;
+            line-height: 1.2;
+        }
+
+        .topbar nav a.active {
+            color: #87ceeb;
+        }
+
+
+
+        @media (max-width: 768px) {
+            .region-label {
+                font-size: 32px;
+            }
+
+            .latest-badge {
+                font-size: 12px;
+                padding: 2px 8px;
+            }
+
+            .section-description {
+                font-size: 14px;
+                max-width: 100%;
+                padding: 0 10px;
+                text-align: left;
+                white-space: normal;
+                /* 手機版允許換行 */
+                text-overflow: unset;
+                /* 不截斷文字 */
+                overflow: visible;
+            }
+
+            .top-left-info {
+                top: 10px;
+                left: 10px;
+            }
+
+            .news-hero-image {
+                height: 220px;
+            }
+
+            .overlay {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 頂部導航 -->
+    <div class="topbar">
+        <div class="brand">地球<br>情報局</div>
+        <nav>
+            <a href="#">全球</a>
+            <a href="#">亞洲</a>
+            <a href="europe.html" class="active">歐洲</a>
+            <a href="#">美洲</a>
+        </nav>
+    </div>
+
+    <!-- 主要新聞內容 -->
+    <img src="https://unews.nccu.edu.tw/File/Posts/3439/BC-EE-7E-46-4C-73-9E-87-C6-55-64-55-CC-3E-08-F2.jpg"
+        class="hero-image" alt="法國學生權益">
+    <div class="container">
+        <h1>挺巴行動波及法國學生受教權　學生基本權益難權衡</h1>
+        <div class="meta">2024.10.18｜法國</div>
+
+        <div class="content">
+            <p>
+                【記者王保伶報導】10月7日上午，逾三十位學生在法國史特拉斯堡大學（Université de Strasbourg）人文科學學院教學大樓Le
+                Patio入口處擺放垃圾桶及路障，並在牆上塗鴉「一年的種族滅絕，一年的抵抗」的字樣，封鎖建築將近一天，導致數千名學生無法上課，殃及學生受教權。
+            </p>
+            <br>
+            <p>
+                這次示威活動正值巴勒斯坦武裝組織哈瑪斯（Hamas）襲擊以色列一周年之際，學生們藉此表達支持巴勒斯坦的立場。校方於8日發布聲明指出，學生行為失控，也未遵守和平辯論規則，學校決定依規定處分抗議學生。「如果我因大樓封鎖而無法上課，我可能會感到沮喪。」拉羅歇爾大學（Université
+                de La Rochelle）歷史與空間規劃系大三學生弗洛里安・塞金（Florian SEGUIN）說道。
+            </p>
+            <img src="https://unews.nccu.edu.tw/File/Posts/3439/9A-6F-F8-5A-EB-1C-A1-81-37-37-1E-28-D6-CF-4B-EC.jpg"
+                alt="法國學生挺巴行動">
+            <div class="caption">
+                史特拉斯堡大學學生在Le Patio建築前擺放垃圾桶與路障，並在牆上噴支持巴勒斯坦抵抗以色列的字詞。圖／截自大學間全國聯盟史特拉斯堡（UNI Strasbourg）Instagram帳號
+            </div>
+            <p>
+                塞金認為，大學是要求批判性思考與辯論的場所，在教育機構內抗議是正當的議題辯論方式，但即使理解封鎖行動的訴求，他仍然難以接受這對學生學習造成的影響。康城諾曼第大學（Université de Caen
+                Normandie）言語治療系大四生洛尊（Rozenn）則表示，只要抗議沒有暴力行為，他便願意了解與支持。他也認同學生為自己所堅信的理念奮鬥，「我們已是有選舉權的公民，需要參與政治、了解世界發生的事。」洛尊補充。
+            </p>
+
+            <img src="https://unews.nccu.edu.tw/File/Posts/3439/BC-EE-7E-46-4C-73-9E-87-C6-55-64-55-CC-3E-08-F2.jpg"
+                alt="大學校園民主">
+            <div class="caption">塞金表示，大學校園是學生發表自己想法的場所，但在抗議過程中，可能會侵犯其他學生的受教權。圖／取自IStock</div>
+            <p>「法國學生非常注重言論自由與抗議權。」塞金說明，但他仍強調，校內抗議的程度應該要有一定的限制，抗議行動必須以不破壞公物和不干擾其他學生為前提。不過洛尊指出，大學應提供更多發聲的機會給學生，若校方與學生間有更開放的對話空間，就能找到解決分歧的方法。
+            </p>
+            <br>
+            <p>
+                「封鎖建築、阻止其他學生上課的行為過於極端，最終只會損害他們原本的訴求。」法國民眾法蘭索瓦（François）說道。針對學生抗議與受教權之間的兩難，他建議校方提供公開的辯論空間，儘管在當前政治分歧嚴重的社會氛圍中，這樣的措施或許難以執行，但校方若能積極嘗試，仍有助於減少暴力抗爭並保護學生的受教權。
+            </p>
+            <img src="https://unews.nccu.edu.tw/File/Posts/3439/C8-0F-A4-46-AD-AB-31-83-C9-79-19-FB-A1-8C-A9-F8.JPG"
+                alt="法國學生發起挺巴行動">
+            <div class="caption">除封鎖教學大樓外，學生也在校園大樓展示巴勒斯坦國旗，以表示對他們的支持。圖／截自史特拉斯堡大學學生聯合會（FSE Strasbourg）X帳號</div>
+
+        </div>
+
+        <div class="hashtags">
+            <span>#言論自由</span>
+            <span>#以巴衝突</span>
+            <span>#學生抗議</span>
+            <span>#受教權</span>
+        </div>
+    </div>
+
+    <!-- 閱讀更多區塊 -->
+
+    <section class="more-articles">
+        <h2>閱讀更多</h2>
+        <div class="card-grid">
+            <a href="netherland.html" class="card">
+                <img src="https://unews.nccu.edu.tw/File/Posts/3650/0C-A6-1F-A8-5F-A8-10-F3-C0-CB-91-A6-F8-7E-39-D5.png"
+                    alt="政府砍預算引發師生抗議">
+                <h3>荷蘭政府砍高等教育預算
+                    <br>師生上街齊聚廣場抗議
+                </h3>
+                <p class="meta">2024.12.06｜荷蘭｜王保伶</p>
+            </a>
+            <a href="georgia.html" class="card">
+                <img src="https://unews.nccu.edu.tw/File/Posts/3612/D6-D0-3C-7F-58-89-78-49-DE-95-86-EF-7C-D6-0F-8D.jpeg"
+                    alt="喬治亞青年抗議">
+                <h3>喬治亞青年質疑選舉舞弊
+                    <br>批親俄勢力干政損害民主
+                </h3>
+                <p class="meta">2024.11.29｜德國｜周元曦</p>
+            </a>
+
+        </div>
+    </section>
+
+
+
+    <!-- 頁尾 -->
+    <footer>
+        <div class="footer-brand">地球<br>情報局</div>
+        <div class="info-badge">認識我們</div>
+        <div style="margin-top: 10px;">
+            <div>情報員：周元曦、王保伶、周依恩</div>
+            <div>情報局長：李法賢</div>
+        </div>
+        <div style="margin-top: 15px;">© 2025 地球情報局. All rights reserved.</div>
+    </footer>
+</body>
+
+</html>

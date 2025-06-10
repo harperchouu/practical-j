@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>全球區域新聞</title>
+
+  <!-- 引入 Leaflet CSS 和 JS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      text-align: center;
+      padding: 50px;
+    }
+
+    #map {
+      width: 100%;
+      height: 500px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>全球區域新聞</h1>
+    <div id="map"></div>
+  </div>
+
+  <script>
+    // 初始化地圖
+    var map = L.map('map').setView([20, 0], 2); // 中心點和縮放級別
+
+    // 加載地圖
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    // 歐洲區域（包括喬治亞、法國、荷蘭）
+    L.polygon([
+      [40, -10], [50, 0], [50, 10], [40, 10], [40, -10]
+    ])
+    .addTo(map)
+    .bindPopup('歐洲')
+    .on('click', function() {
+      window.location.href = '/Users/yuanhsichou/Desktop/practice/europe.html';
+    });
+
+    // 亞洲區域（包括西亞、南亞到中國）
+    L.polygon([
+      [30, 60], [40, 60], [40, 100], [30, 100], [30, 60]
+    ])
+    .addTo(map)
+    .bindPopup('亞洲')
+    .on('click', function() {
+      window.location.href = '/Users/yuanhsichou/Desktop/practice/main-page.html';
+    });
+
+    // 美洲區域（包括美國、加拿大、南美洲）
+    L.polygon([
+      [10, -80], [30, -80], [30, -60], [10, -60], [10, -80]
+    ])
+    .addTo(map)
+    .bindPopup('美洲')
+    .on('click', function() {
+      window.location.href = '/Users/yuanhsichou/Desktop/practice/USA.html';
+    });
+  </script>
+
+</body>
+</html>

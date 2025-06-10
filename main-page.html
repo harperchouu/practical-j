@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>亞洲新聞總覽</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            background-color: #f7f1ec;
+        }
+
+        .topbar {
+            background-color: #7a0c0c;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            box-sizing: border-box;
+        }
+
+        header {
+            background-color: #222;
+            color: white;
+            padding: 10px 20px;
+        }
+
+        .topbar nav a {
+            color: white;
+            margin-left: 10px;
+            text-decoration: none;
+        }
+
+        .section-title {
+            font-weight: bold;
+            font-size: 35px;
+            margin: 20px;
+        }
+
+        .red-badge {
+            background-color: rgb(136, 9, 9);
+            color: white;
+            font-size: 18px;
+            border-radius: 10px;
+            padding: 2px 8px;
+            margin-left: 0;
+        }
+
+        .brown-badge {
+            background-color: #8D775F;
+            color: white;
+            font-size: 18px;
+            border-radius: 10px;
+            padding: 2px 8px;
+            margin-left: 0;
+        }
+
+        .badge-wrapper {
+            margin: 20px;
+            display: flex;
+            justify-content: flex-start;
+        }
+
+        .news-container {
+            display: flex;
+            flex-direction: column;
+            margin: 0 20px;
+        }
+
+        .highlight-news {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 20px;
+        }
+
+        .highlight-news img {
+            width: 480px;
+            height: 340px;
+            background-color: #ccc;
+            margin-right: 20px;
+        }
+
+        .highlight-news .content h3 {
+            font-size: 24px;
+            margin-bottom: 4px;
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .news-card {
+            background: #f4f1ed;
+            padding: 12px;
+            border-radius: 8px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .news-card img {
+            width: 400px;
+            height: 270px;
+            background-color: #ccc;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .news-card .text {
+            margin-top: 8px;
+            font-size: 21px;
+            display: block;
+            text-align: left;
+            width: 300px;
+            margin-top: 8px;
+            margin-left: auto;
+            padding: 0;
+            
+        }
+
+        footer {
+            text-align: center;
+            font-size: 14px;
+            padding: 20px;
+            background-color: #fff;
+            border-top: 1px solid #ccc;
+            color: #555;
+        }
+
+        .footer-brand {
+            color: #a00;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .hashtag {
+            display: inline-block;
+            background-color: #dcdcdc;
+            color: #3582b5;
+            padding: 4px 8px;
+            margin: 4px 4px 0 0;
+            border-radius: 12px;
+            font-size: 13px;
+        }
+
+        .date-country-name {
+            color: #999999;
+            font-size: 18px;
+            margin: 8px;
+        }
+
+        .highlight-news .content h3,
+        .highlight-news .content .date-country-name {
+            margin-left: 0;
+            padding-left: 0;
+        }
+
+        .news-card .text {
+            margin-left: 0;
+            padding-left: 0;
+        }
+
+        .news-card .text strong,
+        .news-card .text .date-country-name {
+            margin-left: 0;
+            padding-left: 0;
+            display: block;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="topbar">
+        <div>地球<br>情報局</div>
+        <div>
+            <nav>
+                <a href="#">全球</a>
+                <a href="#">亞洲</a>
+                <a href="#">歐洲</a>
+                <a href="#">美洲</a>
+            </nav>
+        </div>
+    </div>
+
+    <div class="news-container">
+        <div class="section-title">亞洲<br><span class="red-badge">最新</span></div>
+        <div class="highlight-news">
+            <a href="article0.html" style="text-decoration: none; color: inherit;">
+                <img src="./韓國.jpg" alt="highlight news"></a>
+            <div class="content">
+                <h3>
+                    <a href="article0.html" style="text-decoration: none; color: inherit;">
+                        韓國教授涉性騷反告誹謗 首爾女大學生靜坐抗議
+                    </a>
+                </h3>
+                <p class="date-country-name">2024.11.29｜韓國｜王保伶</p>
+                <p>11月19日，首爾女子大學女權組織「犀牛角」集結近500名學生、校友及教職員，於首爾蘆原警察署前的人行道上靜坐抗議。他們高呼「反對權勢性性騷擾」、「學生是無辜的」等口號，要求警方撤回首爾女大一名性騷擾學生的教授對學生提出的誹謗訴訟。
+                <p>
+                    <span class="hashtag">#校園性騷擾</span>
+                    <span class="hashtag">#學生抗議</span>
+                    <span class="hashtag">#首爾女子大學</span>
+                    <span class="hashtag">#韓國</span>
+                </p>
+            </div>
+        </div>
+
+        <div class="badge-wrapper">
+            <span class="brown-badge">其他</span>
+        </div>
+        <div class="news-grid">
+            <div class="news-card">
+                <a href="article1.html" style="text-decoration: none; color: inherit;">
+                    <img src="./印度.jpeg" alt="news"></a>
+                <div class="text">
+                    <strong><a href="article1.html" style="text-decoration: none; color: inherit;">
+                            學生塗鴉抗議遭退學　<br>德里大學陷打壓言論爭議
+                        </a></strong>
+                    <p class="date-country-name">2024.11.29｜印度｜周依恩</p>
+                </div>
+            </div>
+
+            <div class="news-card">
+                <a href="article2.html" style="text-decoration: none; color: inherit;">
+                    <img src="./中國.jpeg" alt="news"></a>
+                <div class="text">
+                    <strong><a href="article2.html" style="text-decoration: none; color: inherit;">
+                            中國青年夜騎風潮遭禁　<br>河南各大學下令封校
+                        </a></strong>
+                    <p class="date-country-name">2024.11.22｜中國｜王保伶</p>
+                </div>
+            </div>
+
+            <div class="news-card">
+                <a href="article3.html" style="text-decoration: none; color: inherit;">
+                    <img src="./韓國二.jpeg" alt="news"></a>
+                <div class="text">
+                    <strong><a href="article3.html" style="text-decoration: none; color: inherit;">
+                            同德女大生反對男女合校　<br>學生抗議行動不斷升溫
+                        </a></strong>
+                    <p class="date-country-name">2024.11.22｜韓國｜周元曦</p>
+                </div>
+            </div>
+
+            <div class="news-card">
+                <a href="article4.html" style="text-decoration: none; color: inherit;">
+                    <img src="./馬來西亞.jpg" alt="news"></a>
+                <div class="text">
+                    <strong><a href="article4.html" style="text-decoration: none; color: inherit;">
+                            馬大服儀指南多次惹議　<br>學生呼籲校方修改穿衣規定
+                        </a></strong>
+                    <p class="date-country-name">2024.11.15｜馬來西亞｜王保伶</p>
+                </div>
+            </div>
+
+            <div class="news-card">
+                <a href="article5.html" style="text-decoration: none; color: inherit;">
+                    <img src="./伊朗.jpg" alt="news"></a>
+                <div class="text">
+                    <strong><a href="article5.html" style="text-decoration: none; color: inherit;">
+                            伊朗女大生脫衣抗議　<br>頭巾命令引街頭抗爭
+                        </a></strong>
+                    <p class="date-country-name">2024.11.15｜伊朗｜周元曦</p>
+                </div>
+            </div>
+
+            <div class="news-card">
+                <a href="article6.html" style="text-decoration: none; color: inherit;">
+                    <img src="./日本.jpeg" alt="news"></a>
+                <div class="text">
+                    <strong><a href="article6.html" style="text-decoration: none; color: inherit;">
+                            日本青年選舉參與度低　<br>大學生組織望提升投票意願
+                        </a></strong>
+                    <p class="date-country-name">2024.11.08｜日本｜周元曦</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-brand">地球情報局</div>
+        <div>© 2025 地球情報局. All rights reserved.</div>
+        <div>情報員：周元曦、王保伶、周依恩<br>情報局長：李法賢</div>
+    </footer>
+</body>
+
+</html>

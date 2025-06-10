@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>喬治亞青年抗議</title>
+    <style>
+        /* 網站基本樣式 */
+
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            background-color: #e6edf3;
+            color: #333;
+        }
+
+        header,
+        footer {
+            background-color: #1d8692;
+            color: white;
+            padding: 12px 20px;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            background: white;
+            padding: 24px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .topbar {
+            background-color: #176c76;
+            color: white;
+            padding: 12px 24px;
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0;
+        }
+
+        .topbar nav a {
+            color: white;
+            margin-left: 16px;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+
+
+        .section-title-wrapper {
+            margin: 20px;
+        }
+
+        .section-title {
+            font-weight: bold;
+            font-size: 28px;
+            display: inline-block;
+        }
+
+
+
+
+
+        .red-badge {
+            background-color: #8c0606;
+            color: white;
+            font-size: 16px;
+            border-radius: 12px;
+            padding: 2px 10px;
+            margin-top: 4px;
+            display: inline-block;
+        }
+
+        .blue-badge {
+            background-color: #0a3a47;
+            color: white;
+            font-size: 18px;
+            border-radius: 10px;
+            padding: 2px 10px;
+            display: inline-block;
+            margin-left: 20px;
+        }
+
+        /* 英雄區塊 */
+
+        .hero-image {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            display: block;
+            margin-top: 0;
+            background: linear-gradient(135deg, #5a7f8a 0%, #3a5f6a 100%);
+        }
+
+        .news-hero-section {
+            position: relative;
+            height: 300px;
+            max-width: 100%;
+            background-color: #ccc;
+            overflow: hidden;
+        }
+
+        .news-hero-section img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 10;
+            width: 100%;
+            height: 100%;
+            padding: 1rem;
+            color: white;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0));
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        /* 左上區塊包裝 */
+        .top-left-info {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+
+        .region-label {
+            font-size: 30px;
+            font-weight: bold;
+            text-shadow: 0 0 8px rgba(0, 0, 0, 0.7);
+            margin-bottom: 10px;
+            margin-top: 10px;
+        }
+
+        .latest-badge {
+            display: inline-block;
+            background-color: darkred;
+            color: white;
+            font-size: 14px;
+            padding: 4px 10px;
+            border-radius: 20px;
+            margin: 0px 0;
+            width: fit-content;
+        }
+
+
+
+        /*新聞內容*/
+        h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .meta {
+            color: #777;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        img {
+            display: block;
+            margin: 20px auto;
+            max-width: 100%;
+            width: 600px;
+            height: auto;
+        }
+
+        .content p {
+            line-height: 1.8;
+            margin-bottom: 16px;
+            font-size: 16px;
+        }
+
+        .caption {
+            font-size: 13px;
+            color: #666;
+            text-align: center;
+            margin-top: 6px;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+
+        .hashtags span {
+            display: inline-block;
+            background: #ddd;
+            color: #444;
+            padding: 4px 10px;
+            border-radius: 12px;
+            margin: 4px 4px 0 0;
+            font-size: 13px;
+        }
+
+        .more-articles {
+            max-width: 1000px;
+            margin: 60px auto 40px;
+            padding: 0 20px;
+        }
+
+        .more-articles h2 {
+            font-size: 20px;
+            color: #0a3a47;
+            margin-bottom: 20px;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: #d7e3ed;
+            padding: 12px;
+            width: 300px;
+            border-radius: 8px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .card img {
+            width: 100%;
+            height: 200px;
+            background: #e6f9ff;
+            border-radius: 4px;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+
+        .card h3 {
+            font-size: 15px;
+            margin: 0 0 6px;
+            line-height: 1.4;
+        }
+
+        .card .meta {
+            font-size: 12px;
+            color: #666;
+        }
+
+        a.card:hover {
+            transform: scale(1.02);
+            transition: transform 0.2s ease;
+        }
+
+        /* 頁尾 */
+        footer {
+            background-color: #e6edf3;
+            text-align: center;
+            font-size: 14px;
+            padding: 20px;
+            color: #444;
+            border-top: 1px solid #ccc;
+        }
+
+        .footer-brand {
+            font-size: 20px;
+            font-weight: bold;
+            color: #176c76;
+        }
+
+        .info-badge {
+            background-color: #1d8692;
+            color: white;
+            font-size: 14px;
+            padding: 4px 12px;
+            border-radius: 12px;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+
+
+
+        .brand {
+            font-size: 24px;
+            font-weight: bold;
+            line-height: 1.2;
+        }
+
+        .topbar nav a.active {
+            color: #87ceeb;
+        }
+
+
+
+        @media (max-width: 768px) {
+            .region-label {
+                font-size: 32px;
+            }
+
+            .latest-badge {
+                font-size: 12px;
+                padding: 2px 8px;
+            }
+
+            .section-description {
+                font-size: 14px;
+                max-width: 100%;
+                padding: 0 10px;
+                text-align: left;
+                white-space: normal;
+                /* 手機版允許換行 */
+                text-overflow: unset;
+                /* 不截斷文字 */
+                overflow: visible;
+            }
+
+            .top-left-info {
+                top: 10px;
+                left: 10px;
+            }
+
+            .news-hero-image {
+                height: 220px;
+            }
+
+            .overlay {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 頂部導航 -->
+    <div class="topbar">
+        <div class="brand">地球<br>情報局</div>
+        <nav>
+            <a href="#">全球</a>
+            <a href="#">亞洲</a>
+            <a href="europe.html" class="active">歐洲</a>
+            <a href="#">美洲</a>
+        </nav>
+    </div>
+    <!-- 英雄區塊 -->
+    <img src="https://unews.nccu.edu.tw/File/Posts/3612/D6-D0-3C-7F-58-89-78-49-DE-95-86-EF-7C-D6-0F-8D.jpeg"
+    class="hero-image" alt="喬治亞青年抗議">
+    
+    <!-- 主要新聞內容 -->
+
+    <div class="container">
+        <h1>喬治亞青年質疑選舉舞弊　批親俄勢力干政損害民主</h1>
+        <div class="meta">2024.12.06｜喬治亞</div>
+
+        <div class="content">
+            <p>
+                【記者周元曦報導】11月中旬，一群來自巴統肖塔・魯斯塔韋利國立大學（Batumi Shota Rustaveli State
+                University）的學生自發性的組織了一場抗議，他們在校園中靜坐，表達對10月26日選舉結果的不滿，此行為激勵其他大學的學生以及喬治亞民眾效仿。眾人於17日聚集在伊利亞・恰夫恰瓦澤大道（Ilia
+                Chavchavadze Avenue）與伊萬・賈瓦希什維利第比利斯國立大學（Ivane Javakhishvili Tbilisi State
+                University，以下簡稱第比利斯國立大學）附近，指控10月26日的大選有俄羅斯勢力介入，同時存在舞弊行為。
+            </p>
+            <img src="https://unews.nccu.edu.tw/File/Posts/3612/D6-D0-3C-7F-58-89-78-49-DE-95-86-EF-7C-D6-0F-8D.jpeg"
+                alt="喬治亞學生靜坐抗議">
+            <div class="caption">
+                來自第比利斯國立大學的學生和教師聚集在學校門口多天，抗議學校關閉校門，且讓警察進去襲擊學生。　圖／拉斯洛・羅伯特・梅澤斯（László Róbert Mézes）提供
+            </div>
+            <p>
+                據《路透通訊社》（Reuters）報導，執政黨喬治亞之夢（Georgian
+                Dream）在10月26日的大選中獲得了53%的選票。這一親俄政黨的勝利對喬治亞國內的親歐派人士造成巨大打擊，「喬治亞社會對歐洲整合的支持度非常高，根據不同的民調，通常有75%至80%的民眾支持歐洲一體化。」抗議民眾，同時為當地記者的拉斯洛・羅伯特・梅澤斯（László
+                Róbert Mézes）表示。另一位現場抗議民眾戈加・瓦赫納澤（Goga
+                Vachnadze）補充說明，喬治亞之夢不斷阻礙喬治亞加入歐盟，並與中國、俄羅斯等專制國家關係日益緊密，「喬治亞之夢過去試圖低調獨裁，但最近其專制傾向愈發明顯。」 瓦赫納澤表示。
+            </p>
+
+            <img src="https://unews.nccu.edu.tw/File/Posts/3612/E0-D8-90-93-69-54-B1-1F-3E-BB-30-33-93-06-AB-5F.jpg"
+                alt="喬治亞學生抗議標語">
+            <div class="caption">喬治亞人們聚集在查夫伊利亞・恰夫恰瓦澤大道（Ilia Chavchavadze
+                Avenue）與第比利斯國立大學附近，期望藉由抗議行為，表達對執政黨喬治亞之夢的不滿，以及對加入歐盟的期望。　圖／梅澤斯提供</div>
+            <p>
+                此外，近期喬治亞之夢推動多項法律，包括反LGBT和限制言論自由的法案，進一步激起了國內大規模抗議。抗議群眾在第比利斯國立大學搭起帳篷並持續守夜，要求全面調查選舉中的違規行為、在國際觀察下舉行新的選舉，以及呼籲西方國家拒絕承認此次選舉的合法性。19日清晨，警方對「和平示威者」進行了暴力驅逐，拘捕了多名記者和示威者。「警方的行為極度過當，他們攻擊我們，甚至毆打示威者。」瓦赫納澤憤怒地說。他還指出，當時警察使用橡膠子彈瞄準並試圖攻擊他。「政府派出的大批警察、特種部隊和防暴警察，總人數遠超抗議群眾，還動用了三輛裝備水砲的車輛。」梅澤斯回憶當天的情況說道。
+            </p>
+            <img src="https://unews.nccu.edu.tw/File/Posts/3612/15-93-CF-EA-F9-D4-90-37-96-6F-38-76-C4-AE-44-49.jpg"
+                alt="民眾與大學生訴求重新選舉">
+            <div class="caption">民眾與大學生在第比利斯大學門口扎營、席地而坐，有些人揮舞著歐盟旗幟與喬治亞的國旗，訴求重新選舉</div>
+            <p>
+                20日約450位教授與學生聚集在第比利斯國立大學簽署聯合宣言，譴責第比利斯國立大學關閉校園大門，並允許警察與維安部隊進入校園襲擊和平示威的學生，宣言內容一再強調此行為侮辱大學作為自由與學術獨立的象徵，更要求第比利斯國立大學校長賈巴・薩穆希亞（Jaba
+                Samushia）請辭。「學校是為學生而存在的，他們不應該抹滅學生的抗議行動。」就讀密涅瓦大學（Minerva
+                University）的喬治亞學生Tina（化名）說道。梅澤斯則表示有消息指出大學端是受到俄羅斯的威脅，但傷害學生的行為無法讓人接受。
+            </p>
+            <img src="https://unews.nccu.edu.tw/File/Posts/3612/CC-A8-CB-38-AB-D5-BC-ED-CA-39-EA-9B-8E-E5-B3-97.jpeg"
+                alt="喬治亞抗議青年聚集街頭">
+            <div class="caption">抗議由青年揭起，他們公開反對10月26日的選舉結果，並且身披國旗，勇敢的站到街上。　圖／General George Fella提供</div>
+            <p>
+                抗議行動在喬治亞各地，不分年齡層的展開，至今尚未結束。梅澤斯認為抗議的延續將取決於三大因素，包括喬治亞人民是否足夠持久的站出來反抗喬治亞之夢、國內親歐黨派未來的抉擇，以及西方國家的態度。Tina則表示抗議將對喬治亞內政與國際關係產生影響。「抗議本身也顯示了喬治亞人民對國家的關心。」Tina說道。他強調最重要的是學生與年輕族群願意站出來表達不滿，為喬治亞的未來做出改變。
+            </p>
+        </div>
+
+        <div class="hashtags">
+            <span>#喬治亞</span>
+            <span>#歐盟</span>
+            <span>#學生抗議</span>
+            <span>#重新選舉</span>
+        </div>
+    </div>
+
+    <!-- 閱讀更多區塊 -->
+
+    <section class="more-articles">
+        <h2>閱讀更多</h2>
+        <div class="card-grid">
+            <a href="netherland.html" class="card">
+                <img src="https://unews.nccu.edu.tw/File/Posts/3650/0C-A6-1F-A8-5F-A8-10-F3-C0-CB-91-A6-F8-7E-39-D5.png"
+                    alt="政府砍預算引發師生抗議">
+                <h3>荷蘭政府砍高等教育預算
+                    <br>師生上街齊聚廣場抗議
+                </h3>
+                <p class="meta">2024.12.06｜荷蘭｜王保伶</p>
+            </a>
+            <a href=france.html class="card">
+                <img src="https://unews.nccu.edu.tw/File/Posts/3439/BC-EE-7E-46-4C-73-9E-87-C6-55-64-55-CC-3E-08-F2.jpg"
+                    alt="法國學生權益">
+                <h3>挺巴行動波及法國學生受教權<br>學生基本權益難權衡</h3>
+                <p class="meta">2024.11.18｜法國｜周元曦</p>
+            </a>
+
+        </div>
+    </section>
+
+
+
+    <!-- 頁尾 -->
+    <footer>
+        <div class="footer-brand">地球<br>情報局</div>
+        <div class="info-badge">認識我們</div>
+        <div style="margin-top: 10px;">
+            <div>情報員：周元曦、王保伶、周依恩</div>
+            <div>情報局長：李法賢</div>
+        </div>
+        <div style="margin-top: 15px;">© 2025 地球情報局. All rights reserved.</div>
+    </footer>
+</body>
+
+</html>
