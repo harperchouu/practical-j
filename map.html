@@ -1,79 +1,198 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>全球區域新聞</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>全球區域新聞</title>
+    <!-- 引入 Leaflet CSS 和 JS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
 
-  <!-- 引入 Leaflet CSS 和 JS -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
-  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+        .container {
+            text-align: center;
+            padding: 50px;
+        }
 
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f0f0f0;
-      margin: 0;
-      padding: 0;
-    }
+        #map {
+            width: 100%;
+            height: 500px;
+        }
 
-    .container {
-      text-align: center;
-      padding: 50px;
-    }
+        .topbar {
+            background: linear-gradient(45deg, #176c76, #2d8f96);
+            color: white;
+            padding: 12px 24px;
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0;
+            box-shadow: 0 2px 10px rgba(23, 108, 118, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
 
-    #map {
-      width: 100%;
-      height: 500px;
-    }
-  </style>
+        .topbar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            animation: shine 3s ease-in-out infinite;
+        }
+
+        @keyframes shine {
+            0% { left: -100%; }
+            50% { left: 100%; }
+            100% { left: 100%; }
+        }
+
+        .topbar nav a {
+            color: white;
+            margin-left: 16px;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .brand {
+            font-size: 24px;
+            font-weight: bold;
+            line-height: 1.2;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 2px 2px 4px rgba(0,0,0,0.3), 0 0 10px rgba(255,255,255,0.2); }
+            to { text-shadow: 2px 2px 4px rgba(0,0,0,0.3), 0 0 20px rgba(255,255,255,0.4), 0 0 30px rgba(255,255,255,0.2); }
+        }
+
+        /* 頁尾 */
+        footer {
+            background-color: #e6edf3;
+            text-align: center;
+            font-size: 14px;
+            padding: 20px;
+            color: #444;
+            border-top: 1px solid #ccc;
+        }
+
+        .footer-brand {
+            font-size: 20px;
+            font-weight: bold;
+            color: #176c76;
+        }
+
+        .info-badge {
+            background-color: #1d8692;
+            color: white;
+            font-size: 14px;
+            padding: 4px 12px;
+            border-radius: 12px;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+
+        h1 {
+            font-size: 26px;
+            margin-bottom: 40px;
+            font-weight: bold;
+            background: linear-gradient(45deg, #176c76, #1d8692, #2d8f96, #176c76);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientMove 4s ease infinite;
+            position: relative;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            letter-spacing: 1px;
+            line-height: 1.5;
+            padding: 20px;
+            border-radius: 15px;
+            background-color: rgba(255,255,255,0.1);
+            backdrop-filter: blur(5px);
+        }
+
+        @keyframes gradientMove {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(-50%); }
+            40% { transform: translateY(-60%); }
+            60% { transform: translateY(-55%); }
+        }
+    </style>
 </head>
+
 <body>
+    <div class="topbar">
+        <div class="brand">地球情報局</div>
+    </div>
+    
+    <div class="container">
+        <h1>
+          <br>點進地圖，一起探索世界各地正在發生的大小事！</h1>
+        <div id="map"></div>
+    </div>
+    
+    <script>
+        // 初始化地圖
+        var map = L.map('map').setView([20, 0], 2); // 中心點和縮放級別
+        // 加載地圖
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
 
-  <div class="container">
-    <h1>全球區域新聞</h1>
-    <div id="map"></div>
-  </div>
+        // 歐洲區域（涵蓋所有歐洲國家）
+        L.polygon([
+            [35, -25], [72, -25], [72, 20], [35, 20], [35, -25]
+        ])
+            .addTo(map)
+            .bindPopup('歐洲')
+            .on('click', function () {
+                window.location.href="/Users/chouen9116/Desktop/新聞網站實務/20250603/europe.html";
+            });
 
-  <script>
-    // 初始化地圖
-    var map = L.map('map').setView([20, 0], 2); // 中心點和縮放級別
+        // 亞洲區域（涵蓋所有亞洲國家）
+        L.polygon([
+            [5, 25], [75, 25], [75, 180], [5, 180], [5, 25]
+        ])
+            .addTo(map)
+            .bindPopup('亞洲')
+            .on('click', function () {
+                window.location.href = 'https://example.com/asia-news';
+            });
 
-    // 加載地圖
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
+        // 美洲區域（擴大到整個美洲大陸）
+        L.polygon([
+            [-60, -170], [70, -170], [70, -30], [-60, -30], [-60, -170]
+        ])
+            .addTo(map)
+            .bindPopup('美洲')
+            .on('click', function () {
+                window.location.href = 'https://example.com/america-news';
+            });
+    </script>
 
-    // 歐洲區域（包括喬治亞、法國、荷蘭）
-    L.polygon([
-      [40, -10], [50, 0], [50, 10], [40, 10], [40, -10]
-    ])
-    .addTo(map)
-    .bindPopup('歐洲')
-    .on('click', function() {
-      window.location.href = 'https://harperchouu.github.io/europe/europe.html';
-    });
-
-    // 亞洲區域（包括西亞、南亞到中國）
-    L.polygon([
-      [30, 60], [40, 60], [40, 100], [30, 100], [30, 60]
-    ])
-    .addTo(map)
-    .bindPopup('亞洲')
-    .on('click', function() {
-      window.location.href = 'https://github.com/harperchouu/practical-j/blob/main/main-page.html';
-    });
-
-    // 美洲區域（包括美國、加拿大、南美洲）
-    L.polygon([
-      [10, -80], [30, -80], [30, -60], [10, -60], [10, -80]
-    ])
-    .addTo(map)
-    .bindPopup('美洲')
-    .on('click', function() {
-      window.location.href = 'https://harperchouu.github.io/theusa/USA.html';
-    });
-  </script>
-
+    <footer>
+        <div class="footer-brand">地球<br>情報局</div>
+        <div class="info-badge">認識我們</div>
+        <div style="margin-top: 10px;">
+            <div>情報員：周元曦、王保伶、周依恩</div>
+            <div>情報局長：李法賢</div>
+        </div>
+        <div style="margin-top: 15px;">© 2025 地球情報局. All rights reserved.</div>
+    </footer>
 </body>
+
 </html>
