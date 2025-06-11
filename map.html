@@ -9,6 +9,21 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <style>
+        .weather-scroll {
+            display: flex;
+            width: max-content;
+            animation: scrollWeather 40s linear infinite;
+        }
+
+        @keyframes scrollWeather {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .weather-container {
+            overflow: hidden;
+            white-space: nowrap;
+        }
         body {
             font-family: Arial, sans-serif;
             background-color: #f0f0f0;
@@ -23,7 +38,7 @@
 
         #map {
             width: 100%;
-            height: 500px;
+            height: 800px;
         }
 
         .topbar {
@@ -131,23 +146,145 @@
             40% { transform: translateY(-60%); }
             60% { transform: translateY(-55%); }
         }
+
+        .leaflet-interactive {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transform-style: preserve-3d;
+        }
+
+        .leaflet-interactive:hover {
+            transform: scale(1.03) perspective(600px) translateZ(10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            z-index: 999;
+        }
+
+        .leaflet-interactive:active {
+            transform: scale(1.05) perspective(600px) translateZ(15px);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.4);
+            z-index: 999;
+        }
     </style>
 </head>
 
 <body>
-    <div class="topbar">
-        <div class="brand">地球情報局</div>
+    <div style="background-color: darkcyan; color: white; font-family: sans-serif;">
+        <div style="display: flex; justify-content: space-between; align-items: center; padding: 20px 30px; font-size: 16px;">
+            <div style="display: flex; align-items: center; gap: 20px;">
+                <span style="color: white; font-size: 30px; text-decoration: bold;">地球情報局</span>
+              
+            </div>
+            <div>
+                <span>Sign In</span>
+                <button style="margin-left: 10px; padding: 4px 10px; font-weight: bold;">Subscribe</button>
+            </div>
+        </div>
+
+        <div class="weather-container" style="background-color: white; color: black; padding: 10px 0; font-size: 15px;">
+            <div class="weather-scroll" style="padding-left: 20px;">
+                <div style="margin-right: 20px;"><strong>Top Weather</strong></div>
+                <a href="https://worldweather.wmo.int/tc/home.html" target="_blank" style="text-decoration: none; color: inherit;">
+                    <div style="background-color: #eee; padding: 4px 10px; border-radius: 5px; margin-right: 10px;">Taipei 🌤️ 31°C</div>
+                </a>
+                <a href="https://worldweather.wmo.int/tc/home.html" target="_blank" style="text-decoration: none; color: inherit;">
+                    <div style="background-color: #eee; padding: 4px 10px; border-radius: 5px; margin-right: 10px;">Tokyo ☀️ 28°C</div>
+                </a>
+                <a href="https://worldweather.wmo.int/tc/home.html" target="_blank" style="text-decoration: none; color: inherit;">
+                    <div style="background-color: #eee; padding: 4px 10px; border-radius: 5px; margin-right: 10px;">Seoul ⛅ 27°C</div>
+                </a>
+                <a href="https://worldweather.wmo.int/tc/home.html" target="_blank" style="text-decoration: none; color: inherit;">
+                    <div style="background-color: #eee; padding: 4px 10px; border-radius: 5px; margin-right: 10px;">New York 🌧️ 22°C</div>
+                </a>
+                <a href="https://worldweather.wmo.int/tc/home.html" target="_blank" style="text-decoration: none; color: inherit;">
+                    <div style="background-color: #eee; padding: 4px 10px; border-radius: 5px; margin-right: 10px;">London 🌦️ 19°C</div>
+                </a>
+                <a href="https://worldweather.wmo.int/tc/home.html" target="_blank" style="text-decoration: none; color: inherit;">
+                    <div style="background-color: #eee; padding: 4px 10px; border-radius: 5px; margin-right: 10px;">Sydney 🌤️ 25°C</div>
+                </a>
+                <a href="https://worldweather.wmo.int/tc/home.html" target="_blank" style="text-decoration: none; color: inherit;">
+                    <div style="background-color: #eee; padding: 4px 10px; border-radius: 5px; margin-right: 10px;">Cape Town 🌬️ 20°C</div>
+                </a>
+                <a href="https://worldweather.wmo.int/tc/home.html" target="_blank" style="text-decoration: none; color: inherit;">
+                    <div style="background-color: #eee; padding: 4px 10px; border-radius: 5px; margin-right: 10px;">Bangkok 🌡️ 33°C</div>
+                </a>
+                <a href="https://worldweather.wmo.int/tc/home.html" target="_blank" style="text-decoration: none; color: inherit;">
+                    <div style="background-color: #eee; padding: 4px 10px; border-radius: 5px; margin-right: 10px;">Toronto 🌥️ 21°C</div>
+                </a>
+                <a href="https://worldweather.wmo.int/tc/home.html" target="_blank" style="text-decoration: none; color: inherit;">
+                    <div style="background-color: #eee; padding: 4px 10px; border-radius: 5px; margin-right: 10px;">Berlin 🌤️ 23°C</div>
+                </a>
+                <a href="https://worldweather.wmo.int/tc/home.html" target="_blank" style="text-decoration: none; color: inherit;">
+                    <div style="background-color: #eee; padding: 4px 10px; border-radius: 5px; margin-right: 10px;">Dubai 🔥 39°C</div>
+                </a>
+                <a href="https://worldweather.wmo.int/tc/home.html" target="_blank" style="text-decoration: none; color: inherit;">
+                    <div style="background-color: #eee; padding: 4px 10px; border-radius: 5px; margin-right: 10px;">Moscow ❄️ -5°C</div>
+                </a>
+                <a href="https://worldweather.wmo.int/tc/home.html" target="_blank" style="text-decoration: none; color: inherit;">
+                    <div style="background-color: #eee; padding: 4px 10px; border-radius: 5px; margin-right: 10px;">Rio de Janeiro 🌦️ 26°C</div>
+                </a>
+                <div style="margin-right: 20px;"><strong>Top Weather</strong></div>
+                <a href="https://worldweather.wmo.int/tc/home.html" target="_blank" style="text-decoration: none; color: inherit;">
+                    <div style="background-color: #eee; padding: 4px 10px; border-radius: 5px; margin-right: 10px;">Taipei 🌤️ 31°C</div>
+                </a>
+                <a href="https://worldweather.wmo.int/tc/home.html" target="_blank" style="text-decoration: none; color: inherit;">
+                    <div style="background-color: #eee; padding: 4px 10px; border-radius: 5px; margin-right: 10px;">Tokyo ☀️ 28°C</div>
+                </a>
+                <a href="https://worldweather.wmo.int/tc/home.html" target="_blank" style="text-decoration: none; color: inherit;">
+                    <div style="background-color: #eee; padding: 4px 10px; border-radius: 5px; margin-right: 10px;">Seoul ⛅ 27°C</div>
+                </a>
+                <a href="https://worldweather.wmo.int/tc/home.html" target="_blank" style="text-decoration: none; color: inherit;">
+                    <div style="background-color: #eee; padding: 4px 10px; border-radius: 5px; margin-right: 10px;">New York 🌧️ 22°C</div>
+                </a>
+                <a href="https://worldweather.wmo.int/tc/home.html" target="_blank" style="text-decoration: none; color: inherit;">
+                    <div style="background-color: #eee; padding: 4px 10px; border-radius: 5px; margin-right: 10px;">London 🌦️ 19°C</div>
+                </a>
+                <a href="https://worldweather.wmo.int/tc/home.html" target="_blank" style="text-decoration: none; color: inherit;">
+                    <div style="background-color: #eee; padding: 4px 10px; border-radius: 5px; margin-right: 10px;">Sydney 🌤️ 25°C</div>
+                </a>
+                <a href="https://worldweather.wmo.int/tc/home.html" target="_blank" style="text-decoration: none; color: inherit;">
+                    <div style="background-color: #eee; padding: 4px 10px; border-radius: 5px; margin-right: 10px;">Cape Town 🌬️ 20°C</div>
+                </a>
+                <a href="https://worldweather.wmo.int/tc/home.html" target="_blank" style="text-decoration: none; color: inherit;">
+                    <div style="background-color: #eee; padding: 4px 10px; border-radius: 5px; margin-right: 10px;">Bangkok 🌡️ 33°C</div>
+                </a>
+                <a href="https://worldweather.wmo.int/tc/home.html" target="_blank" style="text-decoration: none; color: inherit;">
+                    <div style="background-color: #eee; padding: 4px 10px; border-radius: 5px; margin-right: 10px;">Toronto 🌥️ 21°C</div>
+                </a>
+                <a href="https://worldweather.wmo.int/tc/home.html" target="_blank" style="text-decoration: none; color: inherit;">
+                    <div style="background-color: #eee; padding: 4px 10px; border-radius: 5px; margin-right: 10px;">Berlin 🌤️ 23°C</div>
+                </a>
+                <a href="https://worldweather.wmo.int/tc/home.html" target="_blank" style="text-decoration: none; color: inherit;">
+                    <div style="background-color: #eee; padding: 4px 10px; border-radius: 5px; margin-right: 10px;">Dubai 🔥 39°C</div>
+                </a>
+                <a href="https://worldweather.wmo.int/tc/home.html" target="_blank" style="text-decoration: none; color: inherit;">
+                    <div style="background-color: #eee; padding: 4px 10px; border-radius: 5px; margin-right: 10px;">Moscow ❄️ -5°C</div>
+                </a>
+                <a href="https://worldweather.wmo.int/tc/home.html" target="_blank" style="text-decoration: none; color: inherit;">
+                    <div style="background-color: #eee; padding: 4px 10px; border-radius: 5px; margin-right: 10px;">Rio de Janeiro 🌦️ 26°C</div>
+                </a>
+            </div>
+        </div>
+    </div>
+
     </div>
     
     <div class="container">
         <h1>
-          <br>點進地圖，一起探索世界各地正在發生的大小事！</h1>
+          <br>點擊地圖上的任一區塊，看看有哪些新聞吧！</h1>
         <div id="map"></div>
     </div>
     
     <script>
         // 初始化地圖
-        var map = L.map('map').setView([20, 0], 2); // 中心點和縮放級別
+        var map = L.map('map', {
+            center: [20, 0],
+            zoom: 2,
+            worldCopyJump: false,
+            maxBounds: [
+                [-90, -180],
+                [90, 180]
+            ],
+            maxBoundsViscosity: 1.0
+        });
         // 加載地圖
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -170,7 +307,7 @@
             .addTo(map)
             .bindPopup('亞洲')
             .on('click', function () {
-                window.location.href = 'https://example.com/asia-news';
+                window.location.href = 'https://harperchouu.github.io/asia/main-page.html';
             });
 
         // 美洲區域（擴大到整個美洲大陸）
